@@ -25,7 +25,7 @@ class Checkout:
     recordByItemSku = self.checkoutData.query(f"ItemSku=='{itemSku}'")
     itemsIncludedInDiscount = qty / recordByItemSku['SpecialItemQty'].values[0]
     itemsAtFullPrice = qty % recordByItemSku['SpecialItemQty'].values[0]
-    total = round(itemsIncludedInDiscount) * recordByItemSku['SpecialItemsCosts'].values[0] 
+    total = (round(itemsIncludedInDiscount) * recordByItemSku['SpecialItemsCosts'].values[0]) 
     + (round(itemsAtFullPrice) * recordByItemSku['ItemPrice'].values[0])
     return total
     
