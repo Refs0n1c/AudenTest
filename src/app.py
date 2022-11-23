@@ -21,7 +21,7 @@ def preparecheckOutData() :
 class Checkout:
    def __init__(self):
      self.checkoutData = preparecheckOutData()     
-   def calculateCost(self, qty, itemSku):
+   def calculateItemCost(self, qty, itemSku):
     recordByItemSku = self.checkoutData.query(f"ItemSku=='{itemSku}'")
     itemsIncludedInDiscount = qty / recordByItemSku['SpecialItemQty'].values[0]
     itemsAtFullPrice = qty % recordByItemSku['SpecialItemQty'].values[0]
@@ -31,4 +31,4 @@ class Checkout:
     
 checkout = Checkout()
 
-print(checkout.calculateCost(7,'A'))
+print(checkout.calculateItemCost(7,'A'))
